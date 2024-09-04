@@ -1,0 +1,103 @@
+@font-face{
+    font-family: RobotoSlab;
+    src: url(../webfonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf);
+
+}
+*{
+    font-family: RobotoSlab;
+
+
+}
+body {
+    font-family: RoboSlab; 
+    margin: 0;
+    background-color:#0d131cd2;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+}
+
+nav {
+    display: inline;
+    flex-direction: column;
+    background-color: #333;
+
+
+}
+.video{text-align: center;}
+
+nav ul {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    text-align: center;
+}
+
+nav a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.img{
+    position: relative;
+    top: 100%;
+    right: 0;
+    left: 15em;
+    width: 20px;
+}
+address{
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+#gps{
+    margin-top: 20px;
+    text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+    .img{
+     display: none;
+    }
+    header {
+ background-image: url("/assets/Imagenes/p.jpg");   
+ background-size: cover; 
+ padding: 10px;
+ height: 250px;
+ margin-bottom: 20px;
+ }
+ nav{
+ flex-direction: row;
+ justify-content: flex-end;
+ }
+ nav a{
+     display: inline-block;
+     color: white;
+ }
+ nav ul{
+     background-color: #333;
+     display: flex;
+     margin-top: 0px;
+ }
+        img:not(#logo):hover{
+         box-shadow: 0 0 4px 4px grey;
+        }
+        
+         
+ 
+ }

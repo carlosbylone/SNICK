@@ -1,0 +1,9 @@
+.alert{
+    background-color: rgb(201, 64, 64);
+    padding: .8em;
+    border-radius: 1em;
+    text-shadow: 1px 1px 1px red;
+    font-weight: bolder;
+    margin: 10px;
+
+}
