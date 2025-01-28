@@ -26,6 +26,8 @@
                     $usuario=$_SESSION['username'];
                     echo "<li><a href='usuario.php'>$usuario</a></li>";
                     echo "<li><a href='carrito.php'><i class='fa fa-shopping-cart'></a></li>";
+                //Abrimos sesion con el nombre de usuario despues del login
+
 
                 }else{
                     $usuario="Iniciar Sesion";

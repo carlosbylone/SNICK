@@ -18,6 +18,14 @@ background-position: 0 0,10px 10px;
 display: flex;
 min-height: 100vh;
 }
+.formulario_incorrecto {
+    border-bottom: 2px solid #be3d2c;
+    background-color: #be3d2c;
+}
+
+.formulario_correcto {
+    border-bottom: 2px solid green;
+}
 .arrow{
     position: relative;
     bottom: 2em;
