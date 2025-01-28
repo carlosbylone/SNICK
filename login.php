@@ -31,7 +31,7 @@
             </div>
             <div class="form_group">
                 <input type="password" name="password" class="form_input" placeholder="">
-                <label for="password" class="form_label">Introduce tu usuario</label>
+                <label for="password" class="form_label">Introduce tu contraseña</label>
                 <span class="form_line"></span>
                 <?php if(isset($_GET['intento'])){
                         echo"<span style='color:red;'>Incia sesion para acceder a esta pagina </span>";

@@ -1,4 +1,15 @@
+<?php
+include_once('validar.php');
+include_once('registrado.php');
+$usuario;
 
+if(isset($_SESSION['nombre'])){
+    $usuario=$_SESSION['nombre'];
+}else{
+    $usuario="Iniciar Sesion";
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +20,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-wfvC+TI7ZZxC+37GB1I2dJ2yAEv4iQ2LGMi2iYJN67CcDexPQH+STZ3zjR1do9S1++UWpJBkIyg/IhFF5Rf/MQ==" crossorigin="anonymous" />
     <link rel="stylesheet" href="assets/css/css1.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
-    <link rel="shortcut icon" href="assets/Imagenes/p.jpg" />
 </head>
 
 <body>
@@ -22,15 +32,14 @@
                 <li><a href="Hombre.php">Hombre</a></li>
                 <li><a href="Mujer.php">Mujer</a></li>
                 <?php 
-                if(isset($_SESSION['username'])){
-                    $usuario=$_SESSION['username'];
+                if(isset($_GET['usuario'])){
                     echo "<li><a href='usuario.php'>$usuario</a></li>";
-                    echo "<li><a href='carrito.php'><i class='fa fa-shopping-cart'></a></li>";
+                    echo "<li><a href='carrito.php'><i id='shopping' class='fa fa-shopping-cart'></a></li>";
+
                 //Abrimos sesion con el nombre de usuario despues del login
 
 
                 }else{
-                    $usuario="Iniciar Sesion";
                     echo "<li><a href='login.php'>$usuario</a></li>";
 
                 }

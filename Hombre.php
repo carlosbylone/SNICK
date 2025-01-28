@@ -1,9 +1,10 @@
 <?php
-if(!isset($_SESSION['username'])){
-  header("Location:login.php?intento=true");
-  exit();
+session_start();
+if(isset($_SESSION['nombre'])){
+  $usuario=$_SESSION['nombre'];
 }else{
-  session_start();
+  header("Location:login.php?intento=true");
+    exit();
 }
 ?>
 

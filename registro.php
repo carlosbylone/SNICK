@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 </head>
 <body id="container">
-    <form action="registrado.php" id="formulario" method="post" class="form">
+    <form action="registrado.php" id="formulario" method="POST" class="form">
         <div class="arrow">
             <a href="login.php"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
         </div>
@@ -40,8 +41,14 @@
                 <label for="correo" class="form_label">Introduce tu correo</label>
                 <span class="form_line"></span>
                 <p id="validado-correo"></p>
+               
 
             </div>
+            <?php
+                if(isset($_GET['UsuarioExistente'])){
+                echo"<span  style='color:red;'>Usuario Existente </span>";
+                }
+                ?>
             <div class="form_group">
                 <input type="text" name="telefono" id="telefono" class="form_input" placeholder="" required>
                 <label for="telefono" class="form_label">Introduce tu teléfono</label>
@@ -75,10 +82,10 @@
                 <label for="">Acepto la política de la empresa</label>
 
             </div>
-            <input type="submit" value="Registrarse" class="form_submit" name="registro">
+            <input type="submit" value="Registrarse" class="form_submit" name="registro"/>
         </div>
     </form>
-    <script src="assets/js/validacion.js"></script>
-    <script src="assets/js/validar.js"></script>
+   <!-- 
+    <script src="assets/js/validar.js"></script> -->
 </body>
 </html>
