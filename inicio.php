@@ -7,7 +7,6 @@ if(isset($_SESSION['nombre'])){
     $usuario=$_SESSION['nombre'];
 }else{
     $usuario="Iniciar Sesion";
-
 }
 ?>
 <!DOCTYPE html>
@@ -23,71 +22,67 @@ if(isset($_SESSION['nombre'])){
 </head>
 
 <body>
-   
+
     <header>
         <nav>
-
             <ul>
                 <li><a href="inicio.php">Inicio</a></li>
                 <li><a href="Hombre.php">Hombre</a></li>
                 <li><a href="Mujer.php">Mujer</a></li>
                 <?php 
                 if(isset($_GET['usuario'])){
+                    echo "<li><a href='logout.php'>Cerrar Sesión</a></li>";
                     echo "<li><a href='usuario.php'>$usuario</a></li>";
-                    echo "<li><a href='carrito.php'><i id='shopping' class='fa fa-shopping-cart'></a></li>";
-
-                //Abrimos sesion con el nombre de usuario despues del login
-
-
+                    echo "<li><a href='carrito.php'><i id='shopping' class='fa fa-shopping-cart'></i></a></li>";
                 }else{
                     echo "<li><a href='login.php'>$usuario</a></li>";
-
                 }
                 ?>
                 <li><a href="ubicacion.html">Donde encontrarnos</a></li>
-
             </ul>
         </nav>
     </header>
-    <div class="video">
-        <iframe width="460" height="315" src="https://www.youtube.com/embed/ow935BLi-hE?si=GnAyyGXoJHYNcefF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <aside class="info">
-            <p>Aqui encontraras las mejores marcas a los mejores precios, lo importante es que no solo te vendemos, sino que nos preocupamos que vistas bien</p>
-        </aside>
-    </div>
-    <div class="title">
-        <h1>SNICKS<br />SHOES</h1>
 
-    </div>
-
-    <h4 id="destacar">Productos Destacados</h4>
-
-    <div id="destacados--inner">
-        <i class="fa fa-angle-double-left" aria-hidden="true" id="slider-left"></i>
-        <div class="slider-screen">
-            <img name="Imagen" id="window" />
+    <main>  <div class="video-container">  <iframe width="460" height="315" src="https://www.youtube.com/embed/ow935BLi-hE?si=GnAyyGXoJHYNcefF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <aside class="info">
+                <p>Aqui encontraras las mejores marcas a los mejores precios, lo importante es que no solo te vendemos, sino que nos preocupamos que vistas bien</p>
+            </aside>
         </div>
-        <i class="fa fa-angle-double-right" aria-hidden="true" id="slider-right"></i>
-    </div>
-    <h4 id="destacar">Scalpers</h4>
 
+        <div class="title">
+            <h1>SNICKS<br />SHOES</h1>
+        </div>
 
-    <div id="container-shop">
-        <i class="fa fa-angle-double-left" aria-hidden="true" id="slider-izquierda"></i>
-        <div class="slider-screen">
-            <img name="ropas" />
+        <h4 id="destacar">Productos Destacados</h4>
+
+        <div id="destacados--inner">
+            <i class="fa fa-angle-double-left" aria-hidden="true" id="slider-left"></i>
+            <div class="slider-screen">
+                <img name="Imagen" id="window" />
+            </div>
+            <i class="fa fa-angle-double-right" aria-hidden="true" id="slider-right"></i>
         </div>
-        <i class="fa fa-angle-double-right" id="slider-derecha"></i>
-    </div>
-    <h4 id="destacar">Para Ellas</h4>
-    <div id="container-shop">
-        <i class="fa fa-angle-double-left" aria-hidden="true" id="deslizar-izquierda"></i>
-        <div class="slider-screen">
-            <img name="women" />
+
+        <h4 id="destacar">Scalpers</h4>
+
+        <div id="container-shop">
+            <i class="fa fa-angle-double-left" aria-hidden="true" id="slider-izquierda"></i>
+            <div class="slider-screen">
+                <img name="ropas" />
+            </div>
+            <i class="fa fa-angle-double-right" id="slider-derecha"></i>
         </div>
-        <i class="fa fa-angle-double-right" aria-hidden="true" id="deslizar-derecha"></i>
-    </div>
-    </div>
+
+        <h4 id="destacar">Para Ellas</h4>
+        <div id="container-shop">
+            <i class="fa fa-angle-double-left" aria-hidden="true" id="deslizar-izquierda"></i>
+            <div class="slider-screen">
+                <img name="women" />
+            </div>
+            <i class="fa fa-angle-double-right" aria-hidden="true" id="deslizar-derecha"></i>
+        </div>
+    </main>
+
     <footer>
         <h5>Contactos:</h5>
         <a href="https://www.instagram.com"><img id="logo" src="assets/Imagenes/ii.webp" alt="" width="100px"></a>

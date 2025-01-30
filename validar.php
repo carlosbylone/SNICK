@@ -12,6 +12,14 @@ if (isset($_POST["botonEnvio"])) {
     $telefono = isset($_POST["telefono"]) ? $_POST["telefono"] : "";
     $direccion = isset($_POST["direccion"]) ? $_POST["direccion"] : "";
     
+    if($usuario==="admin"||$usuario==="ADMIN"){
+        if($password==="Admin"){
+            $_SESSION['nombre'] = "Admin";
+            header('Location:inicio.php?admin=true');
+            exit();
+
+        }
+    }
     $usuariosTablas = $conexion->prepare("SELECT DISTINCT usuario, contraseña FROM cliente WHERE usuario=?");
     $usuariosTablas->bind_param("s", $usuario);
     $usuariosTablas->execute();

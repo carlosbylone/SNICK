@@ -17,5 +17,7 @@
 	function desconectarBD($conexion){
 		$conexion->close();
 	}
+	
+	
 
 ?>
