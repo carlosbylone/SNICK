@@ -25,21 +25,23 @@ if(isset($_SESSION['nombre'])){
 
     <header>
         <nav>
-            <ul>
-                <li><a href="inicio.php">Inicio</a></li>
-                <li><a href="Hombre.php">Hombre</a></li>
-                <li><a href="Mujer.php">Mujer</a></li>
-                <?php 
-                if(isset($_GET['usuario'])){
-                    echo "<li><a href='logout.php'>Cerrar Sesión</a></li>";
-                    echo "<li><a href='usuario.php'>$usuario</a></li>";
-                    echo "<li><a href='carrito.php'><i id='shopping' class='fa fa-shopping-cart'></i></a></li>";
-                }else{
-                    echo "<li><a href='login.php'>$usuario</a></li>";
-                }
-                ?>
-                <li><a href="ubicacion.html">Donde encontrarnos</a></li>
-            </ul>
+        <ul>
+      <li><a href="inicio.php" class="active">Inicio</a></li>
+      <li><a href="Hombre.php" >Hombre</a></li>
+      <li><a href="Mujer.php">Mujer</a></li>
+      <?php
+      if (isset($_SESSION['nombre'])) {
+        // El usuario está logueado; mostramos opciones de usuario:
+        echo "<li><a href='logout.php'>Cerrar Sesión</a></li>";
+        echo "<li><a href='usuario.php'>$usuario</a></li>";
+        echo "<li><a href='carrito.php'><i class='fa fa-shopping-cart'></i> Carrito</a></li>";
+    } else {
+        // Nadie logueado: mostrar enlace de login.
+        echo "<li><a href='login.php'>Iniciar sesion</a></li>";
+    }
+      ?>
+      <li><a href="ubicacion.html">Donde encontrarnos</a></li>
+    </ul>
         </nav>
     </header>
 

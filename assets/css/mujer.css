@@ -1,4 +1,4 @@
-@font-face { 
+@font-face {
     font-family: 'RobotoSlab';
     src: url('../webfonts/Roboto_Slab/RobotoSlab-VariableFont_wght.ttf');
 }
@@ -31,24 +31,29 @@ header {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-main {
-    padding: 260px 20px 20px; /* Aumenta aún más la separación del header y el contenido */
-    text-align: center;
-    width: 100%;
-    max-width: 1200px;
+.navbar-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 20px; /* Mayor separación del contenido debajo */
+    padding: 30px 20px;
 }
 
 nav ul {
     list-style: none;
     display: flex;
-    gap: 40px; /* Aumenta el espacio entre elementos del menú */
+    gap: 40px;
 }
 
 nav li {
@@ -58,13 +63,14 @@ nav li {
 nav a {
     color: white;
     text-decoration: none;
-    padding: 14px 20px; /* Más padding para que el menú sea más visible */
+    padding: 14px 20px;
     border-radius: 5px;
     transition: background 0.3s ease;
     text-align: center;
 }
 
-nav a:hover, nav a.active {
+nav a:hover,
+nav a.active {
     background: #007bff;
     color: white;
 }
@@ -74,12 +80,14 @@ nav a:hover, nav a.active {
     grid-template-columns: repeat(5, 1fr);
     gap: 40px;
     justify-content: center;
-    padding: 100px 20px; /* Aumenta más el espacio entre productos y menú */
+    padding: 100px 20px;
     width: 100%;
 }
 
+/* ESTILOS PARA LOS PRODUCTOS */
 .product {
     background: #1a1a2e;
+    position: relative; /* Para posicionar la X en la esquina */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -87,28 +95,45 @@ nav a:hover, nav a.active {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     height: 100%;
+    width: 100%;
+    max-width: 300px;
+    min-height: 450px; /* Ajusta el alto mínimo para que sean uniformes */
 }
 
+/* BOTÓN CERRAR (X) */
+.product .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* IMAGEN DEL PRODUCTO */
 .product img {
     width: 100%;
     max-width: 250px;
-    height: 300px; /* Fijar altura para uniformidad */
-    object-fit: cover; /* Asegura que todas las imágenes tengan la misma proporción */
+    height: 250px;        /* Altura fija para mantener consistencia */
+    object-fit: cover;    /* Recorta la imagen sin deformarla */
     border-radius: 10px;
 }
 
+/* DESCRIPCIÓN DEL PRODUCTO */
 .product-description {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
-    flex-grow: 1;
+    flex-grow: 1; /* Ocupa el espacio sobrante para alinear el botón abajo */
+    margin-top: 15px;
 }
 
+/* BOTÓN PRINCIPAL EN CADA PRODUCTO */
 .product button {
     background: linear-gradient(135deg, #ff8a00, #e52e71);
     border: none;
@@ -122,7 +147,7 @@ nav a:hover, nav a.active {
     font-size: 1rem;
     width: 100%;
     max-width: 250px;
-    margin-top: auto;
+    margin-top: auto; /* Para que el botón quede en la parte inferior */
 }
 
 .product button:hover {
@@ -142,63 +167,44 @@ footer a img {
     width: 50px;
     transition: transform 0.3s ease;
 }
-.delete-btn {
-    background-color: red;
-    color: white;
-    border: none;
-    font-size: 1rem;
-    padding: 5px 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: none;
-    transition: background 0.3s ease;
-}
-
-.delete-btn:hover {
-    background-color: darkred;
-}
-
-.product {
-    position: relative;
-}
-
-.product:hover .delete-btn {
-    display: block;
-}
-
-footer a img:hover {
-    transform: scale(1.1);
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    #container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
 
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-    nav a {
+    .navbar-toggle {
         display: block;
-        padding: 10px;
     }
-    main {
-        padding: 240px 10px 20px; /* Aumentar espacio en pantallas pequeñas */
+    
+    nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: #1a1a2e;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
     }
+    
+    nav ul.active {
+        display: flex;
+    }
+    
     #container {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 50px 10px;
+    }
+
+    .product {
+        max-width: 100%;
+        min-height: auto; /* Ajusta o quita la altura mínima en pantallas pequeñas si así lo deseas */
     }
 }
 
 @media (max-width: 480px) {
     #container {
         grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+        padding: 30px 10px;
     }
 }

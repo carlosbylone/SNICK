@@ -1,13 +1,12 @@
 
-document.querySelectorAll(".product button").forEach(button => {
-    button.addEventListener("click", function(event) {
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Se ha añadido correctamente",
-            showConfirmButton: false,
-            timer: 1500
-          });
-        event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.querySelector(".navbar-toggle");
+    const navMenu = document.querySelector("nav ul");
+
+    toggleButton.addEventListener("click", function () {
+        navMenu.classList.toggle("active");
     });
 });
+function confirmDelete() {
+    return confirm("¿Estás seguro de que deseas eliminar este producto?");
+}
