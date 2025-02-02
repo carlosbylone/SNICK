@@ -14,7 +14,7 @@ if (isset($_GET['msg'])) {
       </script>";
 }
 $usuario = $_SESSION['nombre'];
-$conexion = conectarBD(); // Asegurar que la conexión se establece antes de usarla
+$conexion = conectarBD(); 
 ?>
 
 <!DOCTYPE html>
@@ -30,26 +30,31 @@ $conexion = conectarBD(); // Asegurar que la conexión se establece antes de usa
 
 <body>
 <header>
-  <nav>
-  <ul>
-      <li><a href="inicio.php">Inicio</a></li>
-      <li><a href="Hombre.php" >Hombre</a></li>
-      <li><a href="Mujer.php" class="active">Mujer</a></li>
-      <?php
-      if (isset($_SESSION['nombre'])) {
-        // El usuario está logueado; mostramos opciones de usuario:
-        echo "<li><a href='logout.php'>Cerrar Sesión</a></li>";
-        echo "<li><a href='usuario.php'>$usuario</a></li>";
-        echo "<li><a href='carrito.php'><i class='fa fa-shopping-cart'></i> Carrito</a></li>";
-    } else {
-        // Nadie logueado: mostrar enlace de login.
-        echo "<li><a href='login.php'>Iniciar sesion</a></li>";
-    }
-      ?>
-      <li><a href="ubicacion.html">Donde encontrarnos</a></li>
-    </ul>
-  </nav>
+<button class="navbar-toggle">
+<i class="fas fa-bars"></i> </button>
+    <nav>
+        <ul>
+            <li><a href="index.php" >Inicio</a></li>
+            <li><a href="Hombre.php">Hombre</a></li>
+            <li><a href="Mujer.php"class="active">Mujer</a></li>
+            <?php
+            if (isset($_SESSION['nombre'])) {
+                echo "<li><a href='logout.php'>Cerrar Sesión</a></li>";
+                
+                if ($_SESSION['nombre'] !== 'Admin') {
+                    echo "<li><a href='usuario.php'>$usuario</a></li>";
+                }
+                
+                echo "<li><a href='carrito.php'><i class='fa fa-shopping-cart'></i> Carrito</a></li>";
+            } else {
+                echo "<li><a href='login.php'>Iniciar sesión</a></li>";
+            }
+            ?>
+            <li><a href="ubicacion.php">Donde encontrarnos</a></li>
+        </ul>
+    </nav>
 </header>
+
 
 
 
@@ -64,15 +69,14 @@ if ($resultado->num_rows > 0) {
   while ($fila = $resultado->fetch_assoc()) {
     echo "<div class='product'>";
 
-    echo "<form action='carrito.php' method='post'>";
-    echo "  <input type='hidden' name='precio' value='" . $fila["Precio"] . "'>";
-    echo "  <input type='hidden' name='titulo' value='" . $fila["nombre_productos"] . "'>";
-    echo "  <input type='hidden' name='cantidad' value='1'>";
-
+    echo "<form action='agregar_al_carrito.php' method='post'>";
+    echo "  <input type='hidden' name='id_producto' value='" . $fila["ID"] . "'>";  
     echo "  <img src='" . $fila["Imagen"] . "' alt='" . $fila["nombre_productos"] . "'>";
     echo "  <div class='product-description'>";
     echo "    <h5 class='product-title'>" . $fila["nombre_productos"] . "</h5>";
     echo "    <p class='product-precio'>" . $fila["Precio"] . "€</p>";
+    echo "  <input type='hidden' name='categoria' value='productos_mujer'>";  
+
     echo "    <button class='btn btn-primary' type='submit'><i class='fa fa-shopping-cart'></i> Añadir al carrito</button>";
     echo "  </div>";
     echo "</form>";
@@ -96,5 +100,26 @@ $conexion->close();
 ?>
 
 <footer>
-  <h5>Contactos:</h5>
-  <a href="https://www.instagram.com"><img id="logo" src="assets/Imagenes/ii.webp" alt="" width="100px"></a>
+  <?php if ($usuario === 'Admin') { ?>
+    <form class="footer-admin-form" action="subir_producto_mujer.php" method="post" enctype="multipart/form-data">
+      <label for="nombre_producto">Nombre del producto:</label>
+      <input type="text" name="nombre_producto" required>
+      <label for="precio">Precio:</label>
+      <input type="number" name="Precio" step="0.01" required>
+      <label for="imagen">Selecciona una imagen:</label>
+      <input type="file" name="Imagen" required>
+      <button type="submit">Subir producto</button>
+    </form>
+  <?php } ?>
+  <div class="footer-icons">
+    <a href="https://www.instagram.com"><img id="logo" src="assets/Imagenes/ii.webp" alt="" width="50"></a>
+    <a class="w" href="https://www.whatsapp.com"><img id="logo" src="assets/Imagenes/l.png" alt="" width="50"></a>
+  </div>
+</footer>
+
+<script src="assets/js/EventosTienda.js"></script>
+<script src="assets/js/responsive.js"></script>
+
+</body>
+
+</html>

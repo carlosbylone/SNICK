@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $statement->execute();
         $_SESSION['nombre']=$nombre;
-        header('Location:inicio.php?usuario=true');
+        header('Location:index.php?usuario=true');
         exit();
 
     } catch (Exception $e) {

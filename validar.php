@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 include_once("conexion_bd.php"); 
 $conexion = conectarBD(); 
@@ -15,24 +15,28 @@ if (isset($_POST["botonEnvio"])) {
     if($usuario==="admin"||$usuario==="ADMIN"){
         if($password==="Admin"){
             $_SESSION['nombre'] = "Admin";
-            header('Location:inicio.php?admin=true');
+            header('Location:index.php?admin=true');
             exit();
-
         }
     }
-    $usuariosTablas = $conexion->prepare("SELECT DISTINCT usuario, contraseña FROM cliente WHERE usuario=?");
+    $usuariosTablas = $conexion->prepare("SELECT DISTINCT ID, usuario, contraseña, dni FROM cliente WHERE usuario=?");
     $usuariosTablas->bind_param("s", $usuario);
     $usuariosTablas->execute();
     $resultados = $usuariosTablas->get_result();
 
     if ($resultados->num_rows > 0) {
         $fila = $resultados->fetch_assoc();
-        $hash_password = $fila['contraseña']; // Asegúrate de que "contraseña" sea el nombre exacto del campo
+        $hash_password = $fila['contraseña']; 
         $user = $fila['usuario'];
+        $dni_usuario = $fila['dni'];
+        $id_usuario=$fila['ID'];
 
         if (password_verify($password, $hash_password)) {
             $_SESSION['nombre'] = $usuario;
-            header('Location:inicio.php?usuario=true');
+            $_SESSION['ID_CLIENTE'] = $id_usuario;
+            $_SESSION['ID'] = $id_usuario;
+            $_SESSION['DNI'] = $dni_usuario;
+            header('Location:index.php?usuario=true');
             exit();
         } else {
             echo "La contraseña es incorrecta.";

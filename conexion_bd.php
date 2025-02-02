@@ -1,7 +1,7 @@
 <?php
 	function conectarBD(){
 	
-		$conexion=new mysqli("localhost","root","","snick");
+		$conexion=new mysqli("localhost","root","Snick27.","snick");
 
 		if ($conexion->connect_errno) {
 			echo "Error: Fallo al conectarse a MySQL debido a: \n"; 

@@ -13,11 +13,9 @@
 <body id="section" class="light">
     <form action="validar.php" method="post" class="form">
         <div class="arrow">
-            <a href="inicio.php"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
+            <a href="index.php"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i></a>
         </div>
-        <div class="change">
-            <i id="color" class="fa fa-adjust" aria-hidden="true"></i>
-        </div>
+        
         <h1 class="form_title" style="color:burlywood; font-size:40px; ">SNICKS</h1>
         <h2>Inicia Sesión</h2>
         <p>¿Aun no tienes cuenta? <a href="registro.php">Registrate aquí</a></p>

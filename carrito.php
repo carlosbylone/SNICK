@@ -1,15 +1,14 @@
-<?php
+<?php 
 session_start();
+include_once("conexion_bd.php");
+$conexion = conectarBD();
 
-// Verificamos que haya un usuario en sesión
 if (!isset($_SESSION['nombre'])) {
     header("Location: login.php?intento=true");
     exit();
 }
 
-include_once("conexion_bd.php");
-$conexion = conectarBD();
-
+$usuario = $_SESSION['nombre'];
 $sql = "SELECT * FROM carrito";
 $resultado = $conexion->query($sql);
 ?>
@@ -19,25 +18,39 @@ $resultado = $conexion->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Carrito</title>
-    <!-- Tu hoja de estilo principal -->
-    <link rel="stylesheet" href="assets/css/hombre.css">
+    <link rel="stylesheet" href="assets/css/carrito.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
+
 <header>
+    <button class="navbar-toggle" id="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
     <nav>
-        <ul>
-            <li><a href="inicio.php">Inicio</a></li>
+        <ul id="menu">
+            <li><a href="index.php">Inicio</a></li>
             <li><a href="Hombre.php">Hombre</a></li>
             <li><a href="Mujer.php">Mujer</a></li>
-            <li><a href="carrito.php" class="active">Carrito</a></li>
+            <?php
+            if (isset($_SESSION['nombre'])) {
+                echo "<li><a href='logout.php'>Cerrar Sesión</a></li>";
+                echo "<li><a href='usuario.php'>$usuario</a></li>";
+                echo "<li><a href='carrito.php' class='active'><i class='fa fa-shopping-cart'></i> Carrito</a></li>";
+            } else {
+                echo "<li><a href='login.php'>Iniciar sesión</a></li>";
+            }
+            ?>
+            <li><a href="ubicacion.php">Donde encontrarnos</a></li>
         </ul>
     </nav>
 </header>
 
 <h1 style="margin-top:120px; text-align:center;">Carrito de Compras</h1>
 
-<div class="cart-container"><!-- Contenedor con margen y scroll horizontal si hace falta -->
-    <table class="cart-table"><!-- Tabla con estilo responsive -->
+<div class="cart-container">
+    <table class="cart-table">
         <thead>
             <tr>
                 <th>Imagen</th>
@@ -50,20 +63,15 @@ $resultado = $conexion->query($sql);
         </thead>
         <tbody>
         <?php
-        // Si hay productos en el carrito
         if ($resultado->num_rows > 0) {
             $sumaTotal = 0;
             while ($fila = $resultado->fetch_assoc()) {
                 echo "<tr>";
-                // Cambia 'imagen' por el nombre real de tu columna (por ejemplo, 'ruta')
                 echo "<td><img src='" . $fila['ruta'] . "' alt='" . $fila['nombre'] . "' width='80'></td>";
                 echo "<td>" . $fila['nombre'] . "</td>";
                 echo "<td>" . $fila['precio'] . " €</td>";
                 echo "<td>" . $fila['cantidad'] . "</td>";
-                // Cambia 'precio_total' por 'Precio_total' u otro nombre si difiere en tu BD
                 echo "<td>" . $fila['Precio_total'] . " €</td>";
-
-                // Asume que tu clave primaria se llama 'id' (o 'ID', ajústalo según tu BD)
                 echo "<td>
                         <form action='borrarcarro.php' method='post'>
                             <input type='hidden' name='id_carrito' value='" . $fila['ID'] . "'>
@@ -75,21 +83,56 @@ $resultado = $conexion->query($sql);
                 $sumaTotal += $fila['Precio_total']; 
             }
         } else {
-            // Si no hay artículos, puedes mostrar un mensaje
             echo "<tr><td colspan='6'>No hay artículos en el carrito.</td></tr>";
         }
         ?>
         </tbody>
     </table>
-</div><!-- Fin de .cart-container -->
+</div>
 
 <?php
-// Mostrar el total si hay productos
 if ($resultado->num_rows > 0) {
     echo "<h2 style='text-align:center; margin-bottom:40px;'>Total del carrito: " . $sumaTotal . " €</h2>";
+    echo "<div style='text-align:center; margin-bottom:50px;'>
+            <script src='https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID&currency=EUR'></script>
+            <div id='paypal-button-container'></div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    paypal.Buttons({
+                        createOrder: function(data, actions) {
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: { value: '" . $sumaTotal . "' }
+                                }]
+                            });
+                        },
+                        onApprove: function(data, actions) {
+                            return actions.order.capture().then(function(details) {
+                                alert('Pago completado por ' + details.payer.name.given_name);
+                                window.location.href = 'confirmacion_pago.php';
+                            });
+                        }
+                    }).render('#paypal-button-container');
+                });
+            </script>
+            <form action='procesar_pago.php' method='post'>
+                <input type='hidden' name='total' value='" . $sumaTotal . "'>
+                <button type='submit' style='padding:10px 20px; font-size:18px; background-color:#28a745; color:white; border:none; cursor:pointer;'>Pagar Manualmente</button>
+            </form>
+          </div>";
 }
 $conexion->close();
 ?>
+
+<footer>
+    <h5>Contactos:</h5>
+    <a href="https://www.instagram.com"><img id="logo" src="assets/Imagenes/ii.webp" alt="" width="100px"></a>
+    <a class="w" href="https://www.whatsapp.com"><img id="logo" src="assets/Imagenes/l.png" alt="" width="85px"></a>
+    <address>
+        <h3>C/Crevillent</h3>
+    </address>
+</footer>
+<script src="assets/js/responsive.js"></script>
 
 </body>
 </html>

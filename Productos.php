@@ -24,7 +24,6 @@ function conectarproductosHombre() {
         ["nombre" => "Jersey Deportivo", "ruta" => "assets/Imagenes/1jersey.jpg", "precio" => 22.99]
     ];
 
-    // Verificar si el producto ya existe antes de insertarlo
     $sql = "INSERT INTO productos (Imagen, nombre_productos, Precio) 
             VALUES (?, ?, ?)
             ON DUPLICATE KEY UPDATE 

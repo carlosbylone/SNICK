@@ -15,9 +15,9 @@ body {
     color: white;
     display: flex;
     flex-direction: column;
+    align-items: center;
     min-height: 100vh;
     overflow-x: hidden;
-    align-items: center;
 }
 
 header {
@@ -80,14 +80,13 @@ nav a.active {
     grid-template-columns: repeat(5, 1fr);
     gap: 40px;
     justify-content: center;
-    padding: 100px 20px;
     width: 100%;
+    padding: 100px 20px;
 }
 
-/* ESTILOS PARA LOS PRODUCTOS */
 .product {
     background: #1a1a2e;
-    position: relative; /* Para posicionar la X en la esquina */
+    position: relative;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -99,41 +98,26 @@ nav a.active {
     height: 100%;
     width: 100%;
     max-width: 300px;
-    min-height: 450px; /* Ajusta el alto mínimo para que sean uniformes */
+    min-height: 450px;
 }
 
-/* BOTÓN CERRAR (X) */
-.product .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-}
-
-/* IMAGEN DEL PRODUCTO */
 .product img {
     width: 100%;
     max-width: 250px;
-    height: 250px;        /* Altura fija para mantener consistencia */
-    object-fit: cover;    /* Recorta la imagen sin deformarla */
+    height: 250px;
+    object-fit: cover;
     border-radius: 10px;
 }
 
-/* DESCRIPCIÓN DEL PRODUCTO */
 .product-description {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    flex-grow: 1; /* Ocupa el espacio sobrante para alinear el botón abajo */
+    flex-grow: 1;
     margin-top: 15px;
 }
 
-/* BOTÓN PRINCIPAL EN CADA PRODUCTO */
 .product button {
     background: linear-gradient(135deg, #ff8a00, #e52e71);
     border: none;
@@ -147,7 +131,7 @@ nav a.active {
     font-size: 1rem;
     width: 100%;
     max-width: 250px;
-    margin-top: auto; /* Para que el botón quede en la parte inferior */
+    margin-top: auto;
 }
 
 .product button:hover {
@@ -155,24 +139,90 @@ nav a.active {
     transform: scale(1.1);
 }
 
-footer {
-    background-color: #1a1a2e;
-    text-align: center;
-    padding: 20px;
-    margin-top: auto;
-    width: 100%;
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
 }
 
-footer a img {
+footer {
+    background-color: #1a1a2e;
+    width: 100%;
+    padding: 20px;
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-admin-form {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #1a1a2e;
+    color: white;
+}
+
+.footer-admin-form label {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.footer-admin-form input[type="text"],
+.footer-admin-form input[type="number"],
+.footer-admin-form input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.footer-admin-form button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: auto;
+    transition: background 0.3s ease;
+}
+
+.footer-admin-form button:hover {
+    background-color: #3e8e41;
+}
+
+.footer-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-icons img {
     width: 50px;
     transition: transform 0.3s ease;
+}
+
+.footer-icons img:hover {
+    transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
     .navbar-toggle {
         display: block;
     }
-    
     nav ul {
         display: none;
         flex-direction: column;
@@ -184,20 +234,17 @@ footer a img {
         padding: 20px 0;
         text-align: center;
     }
-    
     nav ul.active {
         display: flex;
     }
-    
     #container {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
         padding: 50px 10px;
     }
-
     .product {
         max-width: 100%;
-        min-height: auto; /* Ajusta o quita la altura mínima en pantallas pequeñas si así lo deseas */
+        min-height: auto;
     }
 }
 

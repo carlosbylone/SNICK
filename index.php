@@ -23,27 +23,30 @@ if(isset($_SESSION['nombre'])){
 
 <body>
 
-    <header>
-        <nav>
-        <ul>
-      <li><a href="inicio.php" class="active">Inicio</a></li>
-      <li><a href="Hombre.php" >Hombre</a></li>
-      <li><a href="Mujer.php">Mujer</a></li>
-      <?php
-      if (isset($_SESSION['nombre'])) {
-        // El usuario está logueado; mostramos opciones de usuario:
-        echo "<li><a href='logout.php'>Cerrar Sesión</a></li>";
-        echo "<li><a href='usuario.php'>$usuario</a></li>";
-        echo "<li><a href='carrito.php'><i class='fa fa-shopping-cart'></i> Carrito</a></li>";
-    } else {
-        // Nadie logueado: mostrar enlace de login.
-        echo "<li><a href='login.php'>Iniciar sesion</a></li>";
-    }
-      ?>
-      <li><a href="ubicacion.html">Donde encontrarnos</a></li>
-    </ul>
-        </nav>
-    </header>
+<header>
+    <button class="navbar-toggle" id="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    <nav>
+        <ul id="menu">
+            <li><a href="index.php"class="active">Inicio</a></li>
+            <li><a href="Hombre.php" >Hombre</a></li>
+            <li><a href="Mujer.php">Mujer</a></li>
+            <?php
+            if (isset($_SESSION['nombre'])) {
+                echo "<li><a href='logout.php'>Cerrar Sesión</a></li>";
+                if ($_SESSION['nombre'] !== 'Admin') {
+                    echo "<li><a href='usuario.php'>$usuario</a></li>";
+                }
+                echo "<li><a href='carrito.php'><i class='fa fa-shopping-cart'></i> Carrito</a></li>";
+            } else {
+                echo "<li><a href='login.php'>Iniciar sesión</a></li>";
+            }
+            ?>
+            <li><a href="ubicacion.php">Donde encontrarnos</a></li>
+        </ul>
+    </nav>
+</header>
 
     <main>  <div class="video-container">  <iframe width="460" height="315" src="https://www.youtube.com/embed/ow935BLi-hE?si=GnAyyGXoJHYNcefF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <aside class="info">
@@ -94,7 +97,9 @@ if(isset($_SESSION['nombre'])){
         </address>
     </footer>
     <script src="assets/js/slider.js"></script>
+    <script src="assets/js/responsive.js"></script>
 
 </body>
+
 
 </html>
