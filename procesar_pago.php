@@ -25,10 +25,7 @@ if ($total > 0) {
         // Redireccionar a la página de confirmación
         header("Location: confirmacion_pago.php?status=success");
         exit();
-    } else {
-        header("Location: carrito.php?error=payment_failed");
-        exit();
-    }
+    } 
 } else {
     header("Location: carrito.php?error=invalid_amount");
     exit();

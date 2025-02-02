@@ -77,6 +77,78 @@ nav ul li a.active {
     background: #007bff;
 }
 
+.cart-container {
+    width: 90%;
+    max-width: 900px;
+    background: #1a1a2e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    margin-top: 130px;
+    overflow-x: auto;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.cart-table th, 
+.cart-table td {
+    padding: 12px;
+    border-bottom: 1px solid #444;
+}
+
+.cart-table th {
+    background: #007bff;
+    color: white;
+}
+
+.cart-table img {
+    max-width: 70px;
+    border-radius: 5px;
+}
+
+.cart-table button {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.cart-table button:hover {
+    background: #b02a37;
+}
+
+.pagar-btn {
+    background: #28a745;
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    width: auto;
+}
+
+.pagar-btn:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+.pagar-btn:active {
+    transform: scale(0.95);
+}
+
 @media (max-width: 768px) {
     header {
         justify-content: space-between;
@@ -93,9 +165,9 @@ nav ul li a.active {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%; 
-        height: 100vh; 
-        background-color: rgba(26, 26, 46, 0.95); 
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(26, 26, 46, 0.95);
         justify-content: center;
         align-items: center;
         text-align: center;
@@ -103,7 +175,6 @@ nav ul li a.active {
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
 
-    /* Menú activo */
     nav ul.active {
         display: flex;
     }
@@ -115,7 +186,43 @@ nav ul li a.active {
 
     nav ul li a {
         display: block;
-        font-size: 1.5rem; 
+        font-size: 1.5rem;
         padding: 15px 20px;
     }
+
+    .pagar-btn {
+        font-size: 1rem;
+        padding: 10px 15px;
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagar-btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+        width: 100%;
+    }
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    padding: 20px;
+    background: #1a1a2e;
+    color: white;
+    width: 100%;
+}
+
+footer h5, footer h3 {
+    margin: 5px 0;
+}
+
+footer a img {
+    margin: 5px;
+    transition: transform 0.3s ease;
+}
+
+footer a img:hover {
+    transform: scale(1.1);
 }
